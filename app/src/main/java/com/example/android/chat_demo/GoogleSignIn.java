@@ -26,7 +26,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class GoogleSignIn extends AppCompatActivity {
 
-    Button b1;
+    Button b1,b2;
     SignInButton btn;
     FirebaseAuth mAuth;
     private final static int RC_SIGN_IN=2;
@@ -45,10 +45,18 @@ public class GoogleSignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_sign_in);
         b1= (Button) findViewById(R.id.b1);
+        b2= (Button) findViewById(R.id.b2);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(GoogleSignIn.this, Categories.class);
+                startActivity(intent);
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(GoogleSignIn.this, expense_graph.class);
                 startActivity(intent);
             }
         });

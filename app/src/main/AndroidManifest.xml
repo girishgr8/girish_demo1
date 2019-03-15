@@ -28,7 +28,9 @@
         <activity android:name=".Home" />
         <activity android:name=".Categories" />
         <activity android:name=".GoogleSignIn" />
-        <activity android:name=".IncomeAddition"></activity>
+        <activity android:name=".IncomeAddition" />
+        <activity android:name=".EnterAmountActivity" />
+        <activity android:name=".expense_graph"></activity>
     </application>
 
 </manifest>

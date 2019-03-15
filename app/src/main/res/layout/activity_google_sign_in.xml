@@ -49,4 +49,13 @@ android:background="@mipmap/back3"
         android:layout_alignParentTop="true"
         android:text="SignIn" />
 
+    <Button
+        android:id="@+id/b2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/b1"
+        android:text="Graphs" />
+
+
 </RelativeLayout>
