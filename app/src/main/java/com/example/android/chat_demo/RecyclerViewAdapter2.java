@@ -10,10 +10,14 @@ import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.jsoup.helper.StringUtil;
 
 import java.util.List;
 
@@ -22,6 +26,8 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
     Context mContext2;
     List<Income> mData2;
     Dialog myDialog2;
+    Button b;
+    EditText e;
 
 
     public RecyclerViewAdapter2(Context mContext2, List<Income> mData2) {
@@ -41,6 +47,14 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
         myDialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
+        b= (Button) myDialog2.findViewById(R.id.dialog2_add);
+        e= (EditText) myDialog2.findViewById(R.id.dialog2_edittext);
+        final String str= String.valueOf(e.getText());
+        final float amount;
+        final boolean isnumeric = StringUtil.isNumeric(str);
+        if(!isnumeric&&!str.equals(""))
+            amount=Float.parseFloat(str);
+
         vHolder2.item_income.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,8 +66,29 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
                 dialog_amt_tv.setText(mData2.get(vHolder2.getAdapterPosition()).getAmount());
                 dialog_income_image.setImageResource(mData2.get(vHolder2.getAdapterPosition()).getPhoto());
 
+                final String category= mData2.get(vHolder2.getAdapterPosition()).getName();
                 Toast.makeText(mContext2,"Please enter amount received as "+String.valueOf(mData2.get(vHolder2.getAdapterPosition()).getName()),Toast.LENGTH_SHORT).show();
                 myDialog2.show();
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        TextView dialog_name_tv= (TextView) myDialog2.findViewById(R.id.dialog2_name_id);
+
+                        if(!StringUtil.isNumeric(String.valueOf(e.getText()))){
+                            Toast.makeText(mContext2,"Please enter a valid amount.",Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            String table="Income";
+                            float finalAMT=Float.parseFloat(String.valueOf(e.getText()));
+                            //pass finalAMT and category to dbms
+                            Toast.makeText(mContext2,"Category: "+category,Toast.LENGTH_SHORT).show();
+                            //and then close dialog
+                            myDialog2.dismiss();
+                        }
+
+                    }
+                });
+
             }
         });
         return vHolder2;

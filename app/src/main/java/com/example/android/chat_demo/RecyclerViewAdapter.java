@@ -82,7 +82,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                            Toast.makeText(mContext,"Please enter a valid amount.",Toast.LENGTH_SHORT).show();
                        }
                        else{
-
+                           String table="Expense";
                            float finalAMT=Float.parseFloat(String.valueOf(e.getText()));
                            //pass finalAMT and category to dbms
                            Toast.makeText(mContext,"Category: "+category,Toast.LENGTH_SHORT).show();

@@ -1,12 +1,16 @@
 package com.example.android.chat_demo;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -26,7 +30,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class GoogleSignIn extends AppCompatActivity {
 
-    Button b1,b2;
+    Button b1;
     SignInButton btn;
     FirebaseAuth mAuth;
     private final static int RC_SIGN_IN=2;
@@ -45,21 +49,14 @@ public class GoogleSignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_sign_in);
         b1= (Button) findViewById(R.id.b1);
-        b2= (Button) findViewById(R.id.b2);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(GoogleSignIn.this, Categories.class);
+                Intent intent = new Intent(GoogleSignIn.this, Home.class);
                 startActivity(intent);
             }
         });
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GoogleSignIn.this, expense_graph.class);
-                startActivity(intent);
-            }
-        });
+
         btn=(SignInButton) findViewById(R.id.googleBtn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,6 +137,7 @@ public class GoogleSignIn extends AppCompatActivity {
             }
         }
     }
+
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
 
